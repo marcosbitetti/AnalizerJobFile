@@ -1,0 +1,42 @@
+******  ENGLISH *********
+Monitor changes in the file system of a project.
+And send a report to the web accessible shaped widget to blog.
+
+Note: This project should not be considered as absolute form of performance analysis. He reports only changes in file structure informing the movement within the project. A project manager should always remember that quantity is not quality.
+
+Installation:
+Point to the file run.sh Cron or Task Scheduler to run.bat.
+
+The files and widget.php analize.php should be sent to the server along with. Config and sumario_online.log
+sumario_online.log should receive permisão of escripa group. and. config should be set as hidden.
+
+The. Config contains the variables of work.
+Rename the file to template.config. Config and change:
+PATH_DE_ANALIZE /home/youprojectfolder/
+URL_PUBLIC http://yourdomain/analize.php
+SEND_IP none
+SEND_PASS SomeSequencyOfCharsHere
+
+Note that SEND_IP may contain a valid IP, can be used if you have a static IP.
+
+******* PORTUGUESE **************
+Monitorar mudanças no sistema de arquivos de um projeto.
+E envia um relatorio para a web acessivel em forma de widget para blog.
+
+Nota: Este projeto não deve ser considerado como forma absoluta de analise de desempenho. Ele apenas reporta mudanças na estrutura de arquivos informando a movimentação dentro do projeto. Um gerente de projeto deve sempre lembrar que quantidade não é qualidade.
+
+Instalação:
+Aponte o Cron para o arquivo run.sh ou o agendador de tarefas para run.bat.
+
+Os arquivos widget.php e analize.php devem ser enviados para o servidor junto com .config e sumario_online.log
+sumario_online.log deve receber permisão de escripa de grupo. e .config deve ser posto como oculto.
+
+O arquivo .config contém as variaveis de trabalho.
+Renomeie o arquivo template.config para .config e mude:
+PATH_DE_ANALIZE /home/youprojectfolder/
+URL_PUBLIC http://yourdomain/analize.php
+SEND_IP none
+SEND_PASS SomeSequencyOfCharsHere
+
+Observe que SEND_IP pode conter um IP valido, pode ser usado se você possuir um IP estático.
+
