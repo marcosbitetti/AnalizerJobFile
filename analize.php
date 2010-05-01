@@ -1,7 +1,7 @@
 <?php
 
-$PESS = 'gh4ldSDcm45DDDff34SS2k234deElC';
-$REG_IP = '189.111.203.249';
+$PESS = '';
+$REG_IP = '';
 $IP = $_SERVER['REMOTE_ADDR'];
 
 $conf = explode("\n",file_get_contents('.config'));
