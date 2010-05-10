@@ -15,12 +15,12 @@ fileTableOld = []
 update = False
 
 #contantes
-PATH_DE_ANALIZE = "/home/bitetti/programacao/cpp/WildWitch/"
+PATH_DE_ANALIZE = ""
 ARQUIVO_LOG = "arquivos.log"
 ARQUIVO_SUMARIO = "sumario.log"
-URL_PUBLIC = "http://www.8arte.net/wwp/analize/analize.php"
-SEND_IP = '192.168.2.102'
-SEND_PASS = 'gh4ldSDcm45DDDff34SS2k234deElC'
+URL_PUBLIC = ""
+SEND_IP = ''
+SEND_PASS = ''
 FILE_SEPARATOR = ':: '
 
 ######
@@ -35,7 +35,7 @@ FILE_SEPARATOR = ':: '
 ######
 
 def getConf():
-   f = open(".config","r")
+   f = open("config","r")
    l = f.readlines()
    f.close()
    global PATH_DE_ANALIZE
@@ -67,7 +67,7 @@ def readDir( path ):
 
 def getIgnoreList():
     global ignorar
-    f = open('.ignore','r')
+    f = open('ignore','r')
     l = None
     for l in f.readlines():
     	s = l.strip()
@@ -131,27 +131,52 @@ if novos>0:
 sumario = time.strftime("Hora do registro: %Y-%m-%d %H:%M:%S\n")
 sumario += "Total de arquivos: %i\n" % len(fileTable)
 sumario += "Total de arquivos da ultima amostragem: %i\n" % len(fileTableOld)
-sumario += "Arquivos novos: %i\n" % novos
-sumario += "Arquivos apagados: %i\n" % apagados
 sumario += "Total de bytes: %i\n" % bytes
 #levanta modificacoes
-modList = []
+modList = 0
+addList = 0
+delList = 0
 strModList = ""
+strAddList = ""
+strDelList = ""
 for f1 in fileTable:
     f2 = localizaFile( f1[0]+f1[1] )
+    #if file exists in old list
     if not f2 is None:
         m = int(f1[3] - f2[3])
         if m>0: #modificado
-            modList.append( f1 )
+            modList += 1
             strModList += "%s%s%s\n" % (f1[0],FILE_SEPARATOR, f1[3])
             update = True
+    #if file not exists in old list
     else: #acrescentado
-        modList.append( f1 )
-        strModList += "%s%s%s\n" % (f1[0],FILE_SEPARATOR, f1[3])
+        addList += 1
+        strAddList += "%s%s%s\n" % (f1[0],FILE_SEPARATOR, f1[3])
         update = True
-sumario += "Arquivos modificados: %i\n" % len(modList)
-sumario += "Lista de arquivos modificados:\n%s" % strModList
+
+#apagados
+for f1 in fileTableOld:
+    str = f1[0]+f1[1]
+    existe = False
+    for f2 in fileTable:
+        if str == (f2[0]+f2[1]):
+            existe = True
+            break
+    if not existe:
+        delList += 1
+    	strDelList += "%s%s%s\n" % (f1[0],FILE_SEPARATOR, f1[3])
+    	update = True
+
+
+sumario += "Arquivos modificados: %i\n" % modList
+sumario += "Lista de arquivos modificados:\n%s:::\n" % strModList
+sumario += "Arquivos adicionados: %i\n" % addList
+sumario += "Lista de arquivos adicionados:\n%s:::\n" % strAddList
+sumario += "Arquivos apagados: %i\n" % delList
+sumario += "Lista de arquivos apagados:\n%s:::\n" % strDelList
+
 print sumario
+
 
 if update:
 	#envia dados para o servidor, caso contrario da erro e nao altera os arquivos

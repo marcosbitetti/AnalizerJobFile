@@ -4,7 +4,7 @@ $PESS = '';
 $REG_IP = '';
 $IP = $_SERVER['REMOTE_ADDR'];
 
-$conf = explode("\n",file_get_contents('.config'));
+$conf = explode("\n",file_get_contents('config'));
 for($i=0; $i<count($conf); $i++)
 {
 	$s = explode(" ", $conf[$i]);

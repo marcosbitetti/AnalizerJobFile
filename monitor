@@ -20,7 +20,7 @@ ARQUIVO_LOG = "arquivos.log"
 ARQUIVO_SUMARIO = "sumario.log"
 URL_PUBLIC = "http://www.8arte.net/wwp/analize/analize.php"
 SEND_IP = '192.168.2.102'
-SEND_PASS = 'gh4ldSDcm45DDDff34SS2k234deElC'
+SEND_PASS = 'hhjEmcDdEdseEukNbfgWSHGfr4dcD67JyCx2SfGgax'
 FILE_SEPARATOR = ':: '
 
 ######
